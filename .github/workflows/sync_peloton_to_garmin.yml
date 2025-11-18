@@ -93,3 +93,18 @@ jobs:
         name: output
         path: ${{ env.OUTPUT_DIR }}
         if-no-files-found: error
+
+jobs:
+  your_job_name:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use the bearer token in a script
+      run: |
+        # Use the environment variable in your script (e.g., a curl command or a build script)
+        echo "Calling API with token..."
+        curl -H "Authorization: Bearer $PELOTON_TOKEN" https://api.example.com/data
+      env:
+        PELOTON_TOKEN: ${{ secrets.P2G_PELOTON__BEARERTOKEN }}  
